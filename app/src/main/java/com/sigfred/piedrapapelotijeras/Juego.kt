@@ -1,67 +1,67 @@
 package com.sigfred.piedrapapelotijeras
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 class Juego : AppCompatActivity() {
 
-    private lateinit var playerScoreTextView: TextView
-    private lateinit var computerScoreTextView: TextView
-    private lateinit var gameResultTextView: TextView
-    private lateinit var computerChoiceTextView: TextView
+    private lateinit var computerChoice: TextView
+    private lateinit var gameResult: TextView
+    private lateinit var playerScore: TextView
+    private lateinit var computerScore: TextView
 
-    private var playerScore = 0
-    private var computerScore = 0
+    private var playerPoints = 0
+    private var computerPoints = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juego)
 
-        // Inicializar vistas
-        playerScoreTextView = findViewById(R.id.playerScore)
-        computerScoreTextView = findViewById(R.id.computerScore)
-        gameResultTextView = findViewById(R.id.gameResult)
-        computerChoiceTextView = findViewById(R.id.computerChoice)
+        // Referencias a las vistas
+        computerChoice = findViewById(R.id.computerChoice)
+        gameResult = findViewById(R.id.gameResult)
+        playerScore = findViewById(R.id.playerScore)
+        computerScore = findViewById(R.id.computerScore)
 
-        // Configurar botones
-        findViewById<Button>(R.id.buttonRock).setOnClickListener { playGame("Piedra") }
-        findViewById<Button>(R.id.buttonPaper).setOnClickListener { playGame("Papel") }
-        findViewById<Button>(R.id.buttonScissors).setOnClickListener { playGame("Tijera") }
+        val buttonPiedra: ImageButton = findViewById(R.id.imageButtonPiedra)
+        val buttonPapel: ImageButton = findViewById(R.id.imageButtonPapel)
+        val buttonTijeras: ImageButton = findViewById(R.id.imageButtonTijeras)
+
+        // Eventos para los botones
+        buttonPiedra.setOnClickListener { playGame("Piedra") }
+        buttonPapel.setOnClickListener { playGame("Papel") }
+        buttonTijeras.setOnClickListener { playGame("Tijeras") }
     }
 
     private fun playGame(playerChoice: String) {
-        val choices = listOf("Piedra", "Papel", "Tijera")
-        val computerChoice = choices[Random.nextInt(choices.size)]
+        val choices = listOf("Piedra", "Papel", "Tijeras")
+        val computerSelection = choices[Random.nextInt(choices.size)]
 
-        // Mostrar selección de la computadora
-        computerChoiceTextView.text = "Computadora elige: $computerChoice"
+        // Actualizar la elección de la computadora
+        computerChoice.text = "Computadora elige: $computerSelection"
 
         // Determinar el resultado
         val result = when {
-            playerChoice == computerChoice -> "Empate"
-            playerChoice == "Piedra" && computerChoice == "Tijera" -> "Ganaste"
-            playerChoice == "Papel" && computerChoice == "Piedra" -> "Ganaste"
-            playerChoice == "Tijera" && computerChoice == "Papel" -> "Ganaste"
-            else -> "Perdiste"
+            playerChoice == computerSelection -> "Empate"
+            playerChoice == "Piedra" && computerSelection == "Tijeras" ||
+                    playerChoice == "Papel" && computerSelection == "Piedra" ||
+                    playerChoice == "Tijeras" && computerSelection == "Papel" -> {
+                playerPoints++
+                "Ganaste"
+            }
+            else -> {
+                computerPoints++
+                "Perdiste"
+            }
         }
 
-        // Actualizar resultado y puntuación
-        gameResultTextView.text = "Resultado: $result"
-        if (result == "Ganaste") {
-            playerScore++
-        } else if (result == "Perdiste") {
-            computerScore++
-        }
-
-        // Actualizar puntuaciones
-        updateScores()
-    }
-
-    private fun updateScores() {
-        playerScoreTextView.text = "Jugador: $playerScore"
-        computerScoreTextView.text = "Computadora: $computerScore"
+        // Actualizar el marcador y el resultado
+        gameResult.text = "Resultado: $result"
+        playerScore.text = "Jugador: $playerPoints"
+        computerScore.text = "Computadora: $computerPoints"
     }
 }
+

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral_variant95"
+    android:background="@drawable/fondo2"
     tools:context=".Juego">
 
     <!-- Imagen superior -->
@@ -15,116 +15,128 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/top_img" />
 
     <!-- Título -->
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="263dp"
-        android:layout_height="205dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/bubble_letters"
-        android:text="   Piedra \n  Papel o \n  Tijeras"
+        android:text="Piedra\nPapel o\nTijeras"
         android:textSize="60sp"
         android:textStyle="bold"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView14" />
 
     <!-- Elección de la computadora -->
 
+    <TextView
+        android:id="@+id/computerChoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Computadora elige: "
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3" />
+
     <!-- Resultado del juego -->
-
-    <!-- Puntuación del jugador -->
-
-    <!-- Puntuación de la computadora -->
 
     <TextView
         android:id="@+id/gameResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
         android:layout_marginTop="20dp"
         android:text="Resultado: "
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/computerChoice" />
+
+    <!-- Puntuación del jugador -->
 
     <TextView
         android:id="@+id/playerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
         android:layout_marginTop="8dp"
         android:text="Jugador: 0"
         android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gameResult" />
 
-    <TextView
-        android:id="@+id/computerChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="24dp"
-        android:text="Computadora elige: "
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3" />
-
-    <!-- Botones: Piedra, Papel, Tijera -->
+    <!-- Puntuación de la computadora -->
 
     <TextView
         android:id="@+id/computerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="8dp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         android:text="Computadora: 0"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerScore" />
 
+    <!-- Botones: Piedra, Papel, Tijera -->
+
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/buttonContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/computerScore"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/computerScore">
 
-        <Button
-            android:id="@+id/buttonRock"
+        <ImageButton
+            android:id="@+id/imageButtonPiedra"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
-            android:text="Piedra" />
+            android:layout_weight="1"
+            android:contentDescription="Piedra"
+            app:srcCompat="@drawable/piedra" />
 
-        <Button
-            android:id="@+id/buttonPaper"
+        <ImageButton
+            android:id="@+id/imageButtonTijeras"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
-            android:text="Papel" />
+            android:layout_weight="1"
+            android:contentDescription="Tijeras"
+            app:srcCompat="@drawable/tijeras" />>
 
-        <Button
-            android:id="@+id/buttonScissors"
+        <ImageButton
+            android:id="@+id/imageButtonPapel"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
-            android:text="Tijera" />
+            android:layout_weight="1"
+            android:contentDescription="Papel"
+            app:srcCompat="@drawable/papel" />
 
     </LinearLayout>
 
