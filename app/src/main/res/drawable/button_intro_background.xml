@@ -3,7 +3,7 @@
 <item>
     <shape> android:shape="rectangle">
         <corners android:radius="10dp"/>
-        <gradient android:startColor="#000000" android:endColor="#5BB1E3"/>
+        <gradient android:startColor="#000001" android:endColor="#5BB1E3"/>
         <stroke android:width="@dimen/cardview_compat_inset_shadow"/>
 
     </shape>
